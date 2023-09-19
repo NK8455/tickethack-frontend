@@ -70,6 +70,7 @@ a {
   margin-left: 80px;
   margin-right: 80px;
   min-height: 400px;
+  max-height: 400px;
   min-width: 350px;
   background-color: white;
   border-radius: 5%;
@@ -77,6 +78,7 @@ a {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 #blocks {
@@ -100,7 +102,7 @@ p {
 }
 
 .searchbutton {
-  background-color: #249c74; /* Green */
+  background-color: #249c74; 
   border: none;
   color: white;
   padding: 10px 130px;
@@ -112,12 +114,6 @@ p {
   cursor: pointer;
 }
 
-/* .searchbutton {
-    transition-duration: 0.4s;
-  }
-  
-  .searchbutton:hover {
-    background-color: #adf6ad; /* Green */
 
 .form {
   background-color: rgb(243, 243, 243);
@@ -148,4 +144,45 @@ p {
 
 .form:hover {
   background-color: rgb(207, 207, 207);
+}
+
+.listing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tickets {
+  height: 50px;
+  width: 300px;
+  background-color: rgb(241, 234, 224);
+  border-radius: 5%;
+  margin: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.scroll {
+  
+        padding: 15px;
+        overflow-y: auto;
+        max-height: 100%;
+       
+}
+
+.bookticket {
+  background-color: #249c74; 
+  border: none;
+  color: white;
+  padding: 10px 20px;
+ 
+  text-decoration: none;
+
+  
+  font-size: 16px;
+  border-radius: 3%;
+  cursor: pointer;
+  height: 40px;
+  border-radius: 5%;
 }
