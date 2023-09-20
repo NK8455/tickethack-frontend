@@ -31,7 +31,7 @@ document.querySelector(".searchbutton").addEventListener("click", function () {
           arrival === goodDate.arrival
         ) {
           htmlContent += `
-            <div class="tickets"><p>${goodDate.departure}</p> > <p>${goodDate.arrival}</p> <p>${formattedTime}</p> <p><b>${goodDate.price}€</b><p>
+            <div class="tickets"><p>${goodDate.departure}</p> > <p>${goodDate.arrival}</p> <div class="time"><p>${formattedTime}</p></div> <p><b><div class="pricevalue">${goodDate.price}</div>€</b><p>
               <button type="button" class="bookticket">Book</button>
             </div>
          `;
@@ -49,17 +49,78 @@ document.querySelector(".searchbutton").addEventListener("click", function () {
 
       const rowElement = document.querySelector(".listing");
       rowElement.innerHTML = htmlContent;
+
+      const allBooks = document.querySelectorAll(".bookticket");
+
+      for (let i = 0; i < allBooks.length; i++) {
+        allBooks[i].addEventListener("click", function () {
+          const departure = document.querySelector(".departure").value;
+          const arrival = document.querySelector(".arrival").value;
+          const date = document.querySelector(".datevalue").value;
+          const price = document.querySelector(".pricevalue").textContent;
+          const time = document.querySelector(".time").textContent;
+
+          console.log(time);
+
+          fetch("http://localhost:3000/trip/newTrip", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ departure, price, date, arrival, time }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+            });
+        });
+      }
     });
 });
 
-//   if (departure === "Paris") {
-//     if (arrival === "Lyon") {
-//       for (let date of data.data) {
-//         let chosenDate = new Date(date.date).toISOString().split("T")[0];
+// document.querySelector(".bookticket").addEventListener("click", function () {
+//   // const departure = document.querySelector(".departure").value;
+//   // const arrival = document.querySelector(".arrival").value;
+//   // const date = document.querySelector(".datevalue").value;
 
-//         if (dateOfTrip === chosenDate) {
-//           console.log(data);
-//         }
-//       }
-//     }
-//   }
+//   console.log("hi")
+
+//   // fetch("http://localhost:3000/trip", {
+//   //   method: "POST",
+//   //   headers: { "Content-Type": "application/json" },
+//   //   body: JSON.stringify({ departure, arrival, date }),
+//   // })
+//   //   .then((response) => response.json())
+//   //   .then((data) => {
+
+//   //   });
+// });
+
+// let cartContent =  `<p>My cart</p>
+
+//     <div id="purchase">
+//         <div id="date">Date</div>
+//         <div id="time">time</div>
+//         <div id="price">price</div>
+
+//      <div id="deletecart">X</div>
+
+//     </div>
+//     <div id="footer">Total : 100€
+//         <button type="button" class="purchasebutton">Purchase</button>
+//     </div>`;
+
+//     const cartElement = document.querySelector("#cart");
+//         cartElement.innerHTML = cartContent;
+
+//     console.log(departure, arrival, date)
+
+//     document.querySelector("#cart").innerHTML +=
+
+//     fetch("http://localhost:3000/trip", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ departure, arrival, date }),
+//     })
+//       .then((response) => response.json())
+//       .then((data) => {
+
+//       });
