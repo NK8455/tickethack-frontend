@@ -15,7 +15,9 @@ fetch("http://localhost:3000/trip/cart")
       document.querySelector(".allprice").textContent = `${totalPrice}€`;
     } else {
       for (let info of data) {
+        document.querySelector(".carttitle").innerHTML = ` My cart `
         cartContent += `
+       
           <div class="purchase" data-id=${info._id}>
             <div class="date">${info.departure} > ${info.arrival}</div>
             <div class="time">${info.time}</div>
@@ -115,6 +117,11 @@ fetch("http://localhost:3000/trip/cart")
         })
           .then((response) => response.json())
           .then((data) => {
+
+
+       
+
+
             console.log(data);
           });
 
@@ -127,6 +134,24 @@ fetch("http://localhost:3000/trip/cart")
       // const date = document.querySelector(".datevalue").value;
       // const price = document.querySelector(".pricevalue").textContent;
       // const time = document.querySelector(".time").textContent;
+
+      fetch("http://localhost:3000/trip/deleteallcart", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+  
+      })
+    .then((response) => response.json())
+    .then((data) => {
+
+
+
+     
+      console.log("deleted")
+  
+  
+  
+  
+    })
     
     
      

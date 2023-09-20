@@ -32,7 +32,7 @@ document.querySelector(".searchbutton").addEventListener("click", function () {
         ) {
           htmlContent += `
             <div class="tickets"><p>${goodDate.departure}</p> > <p>${goodDate.arrival}</p> <div class="time"><p>${formattedTime}</p></div> <p><b><div class="pricevalue">${goodDate.price}</div>€</b><p>
-              <button type="button" class="bookticket">Book</button>
+             <button type="button" class="bookticket">Book</button>
             </div>
          `;
           tripFound = true;
@@ -53,12 +53,17 @@ document.querySelector(".searchbutton").addEventListener("click", function () {
       const allBooks = document.querySelectorAll(".bookticket");
 
       for (let i = 0; i < allBooks.length; i++) {
-        allBooks[i].addEventListener("click", function () {
+        allBooks[i].addEventListener("click", function (e) {
+
+
+          console.log(e.target.parentNode.parentNode)
+
+
           const departure = document.querySelector(".departure").value;
           const arrival = document.querySelector(".arrival").value;
           const date = document.querySelector(".datevalue").value;
-          const price = document.querySelector(".pricevalue").textContent;
-          const time = document.querySelector(".time").textContent;
+          const price = e.target.parentNode.parentNode.querySelector(".pricevalue").textContent;
+          const time = e.target.parentNode.parentNode.querySelector(".time").textContent;
 
           console.log(time);
 
@@ -69,6 +74,11 @@ document.querySelector(".searchbutton").addEventListener("click", function () {
           })
             .then((response) => response.json())
             .then((data) => {
+
+              window.location.replace(
+                "cart.html",
+              );
+
               console.log(data);
             });
         });
